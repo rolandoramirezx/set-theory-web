@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
+import settheory.ReflectiveSet
+import settheory.SetCharacterFactory
+import settheory.SymmetricSet
+import settheory.TransitiveSet
 
 @SpringBootApplication
 class SetTheorySpringApplication
@@ -15,6 +19,9 @@ fun main(args: Array<String>) {
 }
 
 data class MessageEntity(val message: String) //val = read only
+
+//see line 32
+data class SetResult(val set : String, val outcome : String)
 
 @RestController
 @RequestMapping("/api/settheory")
@@ -26,8 +33,32 @@ class SetTheoryController {
     }
 
     @RequestMapping(method = arrayOf(RequestMethod.POST))
-    fun postSets(@RequestBody sets : Array<String>) : Array<String> {
-        return sets
+    fun postSets(@RequestBody sets : Array<String>) : Array<SetResult> {
+        val result = mutableListOf<SetResult>()
+        //on each itt. of array, Kotlin is assigning it to var it
+        sets.map { it -> result.add(processList(it)) } //transformation func
+        return result.toTypedArray()
     }
+
+    //Make a function call processList that accepts a String and returns
+    //a SetResultObject
+    fun processList (set: String ) : SetResult {
+        val characters = set.map { it -> SetCharacterFactory.getInstance().of(it.toString()) } //ln 46-47 settheory.java
+        val isReflective = ReflectiveSet(characters).process().isValid
+        val isSymmetric = SymmetricSet(characters).process().isValid
+        val isTransitive = TransitiveSet(characters).process().isValid
+
+        if(isReflective){
+            return SetResult(set, "Reflective") //ln 44
+        } else if (isSymmetric){
+            return SetResult(set, "Symmetric")
+        } else if (isTransitive){
+            return SetResult(set, "Transitive")
+        } else{
+            return SetResult (set, "is not a set")
+        }
+
+    }
+
 }
 
