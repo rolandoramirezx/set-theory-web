@@ -8,6 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
+<!--updated-->
 	<name>set-theory-spring</name>
 	<description>Set theory project using Spring Framework</description>
 
