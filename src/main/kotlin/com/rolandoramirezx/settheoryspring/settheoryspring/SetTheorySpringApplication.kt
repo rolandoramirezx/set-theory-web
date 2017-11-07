@@ -12,7 +12,7 @@ import settheory.SymmetricSet
 import settheory.TransitiveSet
 
 @SpringBootApplication
-class SetTheorySpringApplication
+open class SetTheorySpringApplication
 
 fun main(args: Array<String>) {
     SpringApplication.run(SetTheorySpringApplication::class.java, *args)
