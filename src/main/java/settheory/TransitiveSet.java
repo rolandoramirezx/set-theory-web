@@ -1,7 +1,7 @@
 package settheory;
 
 import com.google.common.collect.Lists;
-import javafx.util.Pair;
+import kotlin.Pair;
 import lombok.Getter;
 
 import java.util.Collection;
@@ -39,7 +39,7 @@ public class TransitiveSet {
                 SetCharacter<?> key = characters.get(i-1); //first letter in set i.e (first, second)
                 SetCharacter<?> value = characters.get(i);
 
-                if(set.getKey().isSameCharacter(key) && set.getValue().isSameCharacter(value)){
+                if(set.getFirst().isSameCharacter(key) && set.getSecond().isSameCharacter(value)){
                     characterBooleanMap.put(set, true);
                 }
             }

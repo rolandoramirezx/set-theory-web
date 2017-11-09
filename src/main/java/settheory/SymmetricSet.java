@@ -1,9 +1,9 @@
 package settheory;
 
 import com.google.common.collect.Lists;
+import kotlin.Pair;
 import lombok.Getter;
 
-import javafx.util.Pair;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +39,7 @@ public class SymmetricSet {
                 SetCharacter<?> value = characters.get(i - 1);
                 SetCharacter<?> key = characters.get(i);
 
-                if(set.getKey().isSameCharacter(key) && set.getValue().isSameCharacter(value)){
+                if(set.getFirst().isSameCharacter(key) && set.getSecond().isSameCharacter(value)){
                     characterBooleanMap.put(set, true);
                 }
             }
