@@ -24,13 +24,13 @@ data class SetResult(val set : String, val outcome : String)
 @RequestMapping("/api/settheory")
 class SetTheoryController {
 
-    @CrossOrigin(origins = arrayOf("http://localhost:63342", "https://rolandoramirezx.github.io/"))
+    @CrossOrigin
     @RequestMapping(method = arrayOf(RequestMethod.GET))
     fun debug() : MessageEntity {
         return MessageEntity("Got it")
     }
 
-    @CrossOrigin(origins = arrayOf("http://localhost:63342", "https://rolandoramirezx.github.io/"))
+    @CrossOrigin
     @RequestMapping(method = arrayOf(RequestMethod.POST))
     fun postSets(@RequestBody sets : Array<String>) : Array<SetResult> {
         val result = mutableListOf<SetResult>()
